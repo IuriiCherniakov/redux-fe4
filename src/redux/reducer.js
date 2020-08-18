@@ -3,23 +3,23 @@ const initialState = {
         {
             title: 'First todo',
             done: true,
-            id: 1
+            id: Math.random()
         }, {
             title: 'Second todo',
             done: false,
-            id: 2
+            id: Math.random()
         }, {
             title: '3 todo',
             done: false,
-            id: 3
+            id: Math.random()
         }, {
             title: '4 todo',
             done: false,
-            id: 4
+            id: Math.random()
         }
     ],
 
-    columns: [{id: 1, name: 'qwe'}]
+    // columns: [{id: 1, name: 'qwe'}]
 };
 
 const todo = (state = initialState, action) => {
@@ -38,6 +38,23 @@ const todo = (state = initialState, action) => {
                 ...state,
                 todos: newTodos
             };
+
+        case 'MARK_TODO':
+            return {
+                ...state,
+                todos: [,{..., done: action.payload, id: Math.random()}]
+            };
+        // // case 'EDIT_TODO':
+        // //     const editedTodos = state.todos.map((el => {
+        // //         if (el.id === action.payload) return({...el, title:534535})
+        // //         return state.todos
+        // //     }))
+        //
+        //
+        //     return {
+        //         ...state,
+        //         todos: editedTodos
+        //     };
 
         default:
             return state;
