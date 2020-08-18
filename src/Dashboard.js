@@ -11,9 +11,13 @@ function Dashboard(props) {
     const addButtonHandler = () => {
         props.addTodo(newTodo)
         setNewTodo('')
-
-
     }
+
+    // const editButton = () => {
+    //     props.editTodo(el.id)
+    // }
+
+
     // const editButton = () => {
     //     props.editTodo(editedTodo)
     // }
@@ -25,13 +29,13 @@ function Dashboard(props) {
         <div>
             {todos.map(el => <li>
                 {el.title}
-                <input type='checkbox' checked={el.done} onClick={() => props.markTodo(el.id, el.done)}/>
+                <input type='checkbox' checked={el.done} onClick={()=>{props.markTodo(el.id)}}/>
 
 
                 <button onClick={() => props.deleteTodo(el.id)}>delete</button>
 
                 <input value={editedTodo} onChange={(e) => setEditedTodo(e.target.value)}/>
-                <button>update</button>
+                <button onClick={()=>props.editTodo(el.id, editedTodo)}>update</button>
             </li>)}
 
 
@@ -49,8 +53,8 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
     addTodo: (todo) => dispatch({type: 'TODO_ADD', payload: todo}),
     deleteTodo: (todoId) => dispatch({type: 'DELETE_TODO', payload: todoId}),
-    editTodo: (todoId) => dispatch({type: 'EDIT_TODO', payload: todoId}),
     markTodo: (todoId) => dispatch({type: 'MARK_TODO', payload: todoId}),
+    editTodo: (todo) => dispatch({type: 'EDIT_TODO', payload: todo}),
 
 });
 
