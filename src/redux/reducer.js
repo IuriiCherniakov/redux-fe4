@@ -55,8 +55,7 @@ const todo = (state = initialState, action) => {
                 return {
                     ...state,
                     todos: state.todos.map(el => {
-                        if (el.id === action.payload)
-                            return ({...el, title:11111})
+                        if (el.id === action.payload.todoId) return ({...el, title: action.payload.newTitle})
                         return el
                     })
                 };

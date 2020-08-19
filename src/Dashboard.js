@@ -3,7 +3,7 @@ import './App.css';
 import {connect} from "react-redux";
 
 function Dashboard(props) {
-
+    const {todos, column} = props;
     const [newTodo, setNewTodo] = useState('')
     const [editedTodo, setEditedTodo] = useState('')
 
@@ -13,20 +13,15 @@ function Dashboard(props) {
         setNewTodo('')
     }
 
-    // const editButton = () => {
-    //     props.editTodo(el.id)
-    // }
 
 
-    // const editButton = () => {
-    //     props.editTodo(editedTodo)
-    // }
 
-    // console.log(props)
-    const {todos = [], column} = props;
 
+
+    console.log(todos[0])
     return (
         <div>
+            <h3>TO DO LIST</h3>
             {todos.map(el => <li>
                 {el.title}
                 <input type='checkbox' checked={el.done} onClick={()=>{props.markTodo(el.id)}}/>
@@ -36,6 +31,8 @@ function Dashboard(props) {
 
                 <input value={editedTodo} onChange={(e) => setEditedTodo(e.target.value)}/>
                 <button onClick={()=>props.editTodo(el.id, editedTodo)}>update</button>
+                <button>UP</button>
+                <button>DOWN</button>
             </li>)}
 
 
@@ -54,7 +51,7 @@ const mapDispatchToProps = (dispatch) => ({
     addTodo: (todo) => dispatch({type: 'TODO_ADD', payload: todo}),
     deleteTodo: (todoId) => dispatch({type: 'DELETE_TODO', payload: todoId}),
     markTodo: (todoId) => dispatch({type: 'MARK_TODO', payload: todoId}),
-    editTodo: (todo) => dispatch({type: 'EDIT_TODO', payload: todo}),
+    editTodo: (todoId, newTitle) => dispatch({type: 'EDIT_TODO', payload:{todoId, newTitle}}),
 
 });
 
