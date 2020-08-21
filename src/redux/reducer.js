@@ -59,6 +59,20 @@ const todo = (state = initialState, action) => {
                         return el
                     })
                 };
+
+
+            case 'MOVE_UP_TODO':
+
+                return {
+                    ...state,
+                    todos: state.todos.map(el => {
+                        if (el.id === action.payload.todoId) return ({...el, index: action.payload.current})
+                        return el
+                    })
+                };
+
+
+
             // setList(newList)
 
             // // case 'EDIT_TODO':
