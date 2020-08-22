@@ -10,11 +10,17 @@ const initialState = {
             done: false,
             id: Math.random()
         }, {
-            title: '3 todo',
+            title: 'Third todo',
             done: false,
             id: Math.random()
         }, {
-            title: '4 todo',
+            title: 'Fourth todo',
+            done: false,
+            id: Math.random()
+
+        },
+        {
+            title: 'Fifth todo',
             done: false,
             id: Math.random()
 

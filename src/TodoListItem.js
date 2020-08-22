@@ -6,8 +6,12 @@ import {connect} from "react-redux";
 function TodoListItem(props) {
 
     const [editedTodo, setEditedTodo] = useState('')
-    const {el, i, updateTodo, moveDown} = props;
+    const {el, i, updateTodo, moveDown, todos} = props;
 
+    const moveUpButton = () => {
+        props.moveUpTodo(i, i - 1);
+        console.log(el.i - 1);
+    }
 
 
     return (
@@ -29,14 +33,8 @@ function TodoListItem(props) {
             }>update
             </button>
 
-            <button onClick={() => {
-                props.moveUpTodo(i, i - 1)
-                console.log(el.i - 1)
-
-            }
-            }>UP
-            </button>
-            <button onClick={()=>moveDown(i, i + 1)} >DOWN</button>
+            <button onClick={moveUpButton} disabled={i===0} >UP</button>
+            <button onClick={() => moveDown(i, i + 1)} disabled={i===(todos.length-1)}>DOWN</button>
         </li>
     );
 }

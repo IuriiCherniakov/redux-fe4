@@ -39,6 +39,7 @@ function Dashboard(props) {
                 i={i}
                 updateTodo={updateTodo}
                 moveDown={moveDown}
+                todos={todos}
             />)}
 
 
