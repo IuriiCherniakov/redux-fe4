@@ -3,7 +3,8 @@ const initialState = {
         {
             title: 'First todo',
             done: false,
-            id: Math.random()
+            id: Math.random(),
+
         }, {
             title: 'Second todo',
             done: false,
@@ -16,10 +17,11 @@ const initialState = {
             title: '4 todo',
             done: false,
             id: Math.random()
+
         }
     ],
 
-    // columns: [{id: 1, name: 'qwe'}]
+
 };
 
 const todo = (state = initialState, action) => {
@@ -62,13 +64,19 @@ const todo = (state = initialState, action) => {
 
 
             case 'MOVE_UP_TODO':
+                let currentTodoId = action.payload.todoIndexCurrent;
+                let previousTodoId = action.payload.todoIndexPrevious;
+                const newListTodos = state.todos.map((el, i) => {
+
+                    if (i === currentTodoId) return state.todos[previousTodoId]
+                    if (i === previousTodoId) return state.todos[currentTodoId]
+
+                    return el
+                })
 
                 return {
                     ...state,
-                    todos: state.todos.map(el => {
-                        if (el.id === action.payload.todoId) return ({...el, index: action.payload.current})
-                        return el
-                    })
+                    todos: newListTodos
                 };
 
 
