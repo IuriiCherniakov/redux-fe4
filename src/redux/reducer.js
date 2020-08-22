@@ -64,12 +64,12 @@ const todo = (state = initialState, action) => {
 
 
             case 'MOVE_UP_TODO':
-                let currentTodoId = action.payload.todoIndexCurrent;
-                let previousTodoId = action.payload.todoIndexPrevious;
+                let currentTodoIndex = action.payload.todoIndexCurrent;
+                let previousTodoIndex = action.payload.todoIndexPrevious;
                 const newListTodos = state.todos.map((el, i) => {
 
-                    if (i === currentTodoId) return state.todos[previousTodoId]
-                    if (i === previousTodoId) return state.todos[currentTodoId]
+                    if (i === currentTodoIndex) return state.todos[previousTodoIndex]
+                    if (i === previousTodoIndex) return state.todos[currentTodoIndex]
 
                     return el
                 })
@@ -79,21 +79,24 @@ const todo = (state = initialState, action) => {
                     todos: newListTodos
                 };
 
+            case 'MOVE_DOWN_TODO':
+                let currTodoIndex = action.payload.todoIndexCurrent;
+                let prevTodoIndex = action.payload.todoIndexPrevious;
+                const newListTodos1 = state.todos.map((el, i) => {
+
+                    if (i === currTodoIndex) return state.todos[prevTodoIndex]
+                    if (i === prevTodoIndex) return state.todos[currTodoIndex]
+
+                    return el
+                })
+
+                return {
+                    ...state,
+                    todos: newListTodos1
+                };
 
 
-            // setList(newList)
 
-            // // case 'EDIT_TODO':
-            // //     const editedTodos = state.todos.map((el => {
-            // //         if (el.id === action.payload) return({...el, title:534535})
-            // //         return state.todos
-            // //     }))
-            //
-            //
-            //     return {
-            //         ...state,
-            //         todos: editedTodos
-            //     };
 
             default:
                 return state;

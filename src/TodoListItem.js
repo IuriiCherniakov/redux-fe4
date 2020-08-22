@@ -6,7 +6,8 @@ import {connect} from "react-redux";
 function TodoListItem(props) {
 
     const [editedTodo, setEditedTodo] = useState('')
-    const {el, i, updateTodo} = props;
+    const {el, i, updateTodo, moveDown} = props;
+
 
 
     return (
@@ -35,7 +36,7 @@ function TodoListItem(props) {
             }
             }>UP
             </button>
-            <button>DOWN</button>
+            <button onClick={()=>moveDown(i, i + 1)} >DOWN</button>
         </li>
     );
 }
@@ -49,7 +50,7 @@ const mapDispatchToProps = (dispatch) => ({
         type: 'MOVE_UP_TODO',
         payload: {todoIndexCurrent, todoIndexPrevious}
     }),
-    // moveDownTodo: (todoIndexCurrent, todoIndexPrevious) => dispatch({type: 'MOVE_DOWN_TODO', payload:{todoIndexCurrent, todoIndexPrevious} }),
+
 
 });
 

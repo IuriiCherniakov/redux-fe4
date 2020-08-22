@@ -10,7 +10,9 @@ function Dashboard(props) {
     const updateTodo = (todoId, newTitle) => {
         props.editTodo(todoId, newTitle)
     }
-
+    const moveDown = (todoIndexCurrent, todoIndexPrevious) => {
+        props.moveDownTodo(todoIndexCurrent, todoIndexPrevious);
+    }
 
     const addButtonHandler = () => {
         props.addTodo(newTodo)
@@ -36,6 +38,7 @@ function Dashboard(props) {
                 el={el}
                 i={i}
                 updateTodo={updateTodo}
+                moveDown={moveDown}
             />)}
 
 
@@ -53,8 +56,10 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
     addTodo: (todo) => dispatch({type: 'TODO_ADD', payload: todo}),
     editTodo: (todoId, newTitle) => dispatch({type: 'EDIT_TODO', payload: {todoId, newTitle}}),
-
-    // moveDownTodo: (todoIndexCurrent, todoIndexPrevious) => dispatch({type: 'MOVE_DOWN_TODO', payload:{todoIndexCurrent, todoIndexPrevious} }),
+    moveDownTodo: (todoIndexCurrent, todoIndexPrevious) => dispatch({
+        type: 'MOVE_DOWN_TODO',
+        payload: {todoIndexCurrent, todoIndexPrevious}
+    }),
 
 });
 
