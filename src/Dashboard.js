@@ -1,7 +1,8 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import './App.css';
 import {connect} from "react-redux";
 import TodoListItem from "./TodoListItem";
+import {addTodo, getTodos} from "./redux/action";
 
 function Dashboard(props) {
     const {todos = [], column} = props;
@@ -29,12 +30,16 @@ function Dashboard(props) {
     //     })
     //     setList(newList)
 
+useEffect(()=>{
+    props.getList()
+},[]);
 
     console.log(todos)
     return (
         <div>
             <h3>TO DO LIST</h3>
             {todos.map((el, i) => <TodoListItem
+                key={el._id}
                 el={el}
                 i={i}
                 updateTodo={updateTodo}
@@ -55,12 +60,13 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    addTodo: (todo) => dispatch({type: 'TODO_ADD', payload: todo}),
+    addTodo: (newName) => dispatch(addTodo(newName)),
     editTodo: (todoId, newTitle) => dispatch({type: 'EDIT_TODO', payload: {todoId, newTitle}}),
     moveDownTodo: (todoIndexCurrent, todoIndexPrevious) => dispatch({
         type: 'MOVE_DOWN_TODO',
         payload: {todoIndexCurrent, todoIndexPrevious}
     }),
+    getList: () => dispatch(getTodos())
 
 });
 

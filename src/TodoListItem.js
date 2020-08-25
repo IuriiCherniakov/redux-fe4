@@ -16,10 +16,10 @@ function TodoListItem(props) {
 
     return (
         <li>
-            {el.title}
+            {el.name}
 
             <input type='checkbox' checked={el.done} onClick={() => {
-                props.markTodo(el.id)
+                props.markTodo(el._id)
             }}/>
 
 

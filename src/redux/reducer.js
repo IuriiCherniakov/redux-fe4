@@ -1,30 +1,30 @@
 const initialState = {
     todos: [
-        {
-            title: 'First todo',
-            done: false,
-            id: Math.random(),
-
-        }, {
-            title: 'Second todo',
-            done: false,
-            id: Math.random()
-        }, {
-            title: 'Third todo',
-            done: false,
-            id: Math.random()
-        }, {
-            title: 'Fourth todo',
-            done: false,
-            id: Math.random()
-
-        },
-        {
-            title: 'Fifth todo',
-            done: false,
-            id: Math.random()
-
-        }
+        // {
+        //     title: 'First todo',
+        //     done: false,
+        //     id: Math.random(),
+        //
+        // }, {
+        //     title: 'Second todo',
+        //     done: false,
+        //     id: Math.random()
+        // }, {
+        //     title: 'Third todo',
+        //     done: false,
+        //     id: Math.random()
+        // }, {
+        //     title: 'Fourth todo',
+        //     done: false,
+        //     id: Math.random()
+        //
+        // },
+        // {
+        //     title: 'Fifth todo',
+        //     done: false,
+        //     id: Math.random()
+        //
+        // }
     ],
 
 
@@ -33,11 +33,18 @@ const initialState = {
 const todo = (state = initialState, action) => {
         switch (action.type) {
 
-            case 'TODO_ADD':
+            case 'GET_TODO':
                 return {
                     ...state,
-                    todos: [...state.todos, {title: action.payload, done: false, id: Math.random()}]
-                };
+                    todos: action.payload
+                }
+
+
+            // case 'TODO_ADD':
+            //     return {
+            //         ...state,
+            //         todos: [...state.todos, {title: action.payload, done: false, id: Math.random()}]
+            //     };
 
             case 'DELETE_TODO':
                 const newTodos = state.todos.filter(el => el.id !== action.payload)
