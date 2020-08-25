@@ -46,34 +46,42 @@ const todo = (state = initialState, action) => {
             //         todos: [...state.todos, {title: action.payload, done: false, id: Math.random()}]
             //     };
 
-            case 'DELETE_TODO':
-                const newTodos = state.todos.filter(el => el.id !== action.payload)
+            // case 'DELETE_TODO':
+            //     const newTodos = state.todos.filter(el => el.id !== action.payload)
+            //
+            //     return {
+            //         ...state,
+            //         todos: newTodos
+            //     };
+
+            case 'DEL_TODO':
 
                 return {
-                    ...state,
-                    todos: newTodos
+                    ...state
                 };
 
-            case 'MARK_TODO':
+            // case 'MARK_TODO':
+            //
+            //     return {
+            //         ...state,
+            //         todos: state.todos.map(el => {
+            //             if (el.id === action.payload)
+            //                 return ({...el, done: !el.done})
+            //             return el
+            //         })
+            //
+            //     };
 
-                return {
-                    ...state,
-                    todos: state.todos.map(el => {
-                        if (el.id === action.payload)
-                            return ({...el, done: !el.done})
-                        return el
-                    })
 
-                };
-            case 'EDIT_TODO':
-
-                return {
-                    ...state,
-                    todos: state.todos.map(el => {
-                        if (el.id === action.payload.todoId) return ({...el, title: action.payload.newTitle})
-                        return el
-                    })
-                };
+            // case 'EDIT_TODO':
+            //
+            //     return {
+            //         ...state,
+            //         todos: state.todos.map(el => {
+            //             if (el.id === action.payload.todoId) return ({...el, title: action.payload.newTitle})
+            //             return el
+            //         })
+            //     };
 
 
             case 'MOVE_UP_TODO':

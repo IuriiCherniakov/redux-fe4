@@ -34,21 +34,56 @@ export function addTodo(newName) {
 
 }
 
-export function deleteTodo(newName) {
+export function delete_Todo(todoId) {
     return (dispatch) => {
-        axios.delete('http://localhost:5000/todo', {id: todoId})
+        axios.delete(`http://localhost:5000/todo/${todoId}`)
             .then(result => {
                 console.log(result.data)
                 dispatch({
                     type: 'DEL_TODO',
-                    payload: result.data
-
-
-                })
+                    payload: todoId,},
+                    dispatch(getTodos())
+                    )
             })
             .catch()
     }
 
 }
+
+
+export function change_Todo(todoId, newTitle) {
+    return (dispatch) => {
+        axios.patch(`http://localhost:5000/todo/${todoId}`, {name: newTitle})
+            .then(result => {
+                console.log(result.data)
+                dispatch({
+                        type: 'EDIT_TODO',
+                        payload: {todoId, newTitle},
+                    },
+                    dispatch(getTodos())
+                )
+            })
+            .catch()
+    }
+
+}
+
+export function mark_Todo(todoId, done) {
+    return (dispatch) => {
+        axios.patch(`http://localhost:5000/todo/${todoId}`, {done: !done})
+            .then(result => {
+                console.log(result.data)
+                dispatch({
+                        type: 'MARK_TODO',
+                        payload: {todoId, done},
+                    },
+                    dispatch(getTodos())
+                )
+            })
+            .catch()
+    }
+
+}
+
 
 

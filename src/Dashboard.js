@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import './App.css';
 import {connect} from "react-redux";
 import TodoListItem from "./TodoListItem";
-import {addTodo, getTodos} from "./redux/action";
+import {addTodo, change_Todo, getTodos} from "./redux/action";
 
 function Dashboard(props) {
     const {todos = [], column} = props;
@@ -61,7 +61,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
     addTodo: (newName) => dispatch(addTodo(newName)),
-    editTodo: (todoId, newTitle) => dispatch({type: 'EDIT_TODO', payload: {todoId, newTitle}}),
+    editTodo: (todoId, newTitle) => dispatch(change_Todo(todoId, newTitle)),
     moveDownTodo: (todoIndexCurrent, todoIndexPrevious) => dispatch({
         type: 'MOVE_DOWN_TODO',
         payload: {todoIndexCurrent, todoIndexPrevious}

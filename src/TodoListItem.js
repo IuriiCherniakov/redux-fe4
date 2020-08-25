@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import './App.css';
 import Dashboard from "./Dashboard";
 import {connect} from "react-redux";
+import {delete_Todo, mark_Todo} from "./redux/action";
 
 function TodoListItem(props) {
 
@@ -19,15 +20,15 @@ function TodoListItem(props) {
             {el.name}
 
             <input type='checkbox' checked={el.done} onClick={() => {
-                props.markTodo(el._id)
+                props.markTodo(el._id, el.done)
             }}/>
 
 
-            <button onClick={() => props.deleteTodo(el.id)}>delete</button>
+            <button onClick={() => props.delTodo(el._id)}>delete</button>
 
             <input value={editedTodo} onChange={(e) => setEditedTodo(e.target.value)}/>
             <button onClick={() => {
-                updateTodo(el.id, editedTodo);
+                updateTodo(el._id, editedTodo);
                 setEditedTodo('')
             }
             }>update
@@ -41,8 +42,8 @@ function TodoListItem(props) {
 
 
 const mapDispatchToProps = (dispatch) => ({
-    deleteTodo: (todoId) => dispatch({type: 'DELETE_TODO', payload: todoId}),
-    markTodo: (todoId) => dispatch({type: 'MARK_TODO', payload: todoId}),
+    delTodo: (todoId) => dispatch(delete_Todo(todoId)),
+    markTodo: (todoId, done) => dispatch(mark_Todo(todoId, done)),
 
     moveUpTodo: (todoIndexCurrent, todoIndexPrevious) => dispatch({
         type: 'MOVE_UP_TODO',
