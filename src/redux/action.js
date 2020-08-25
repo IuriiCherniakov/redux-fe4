@@ -36,10 +36,15 @@ export function addTodo(newName) {
 
 export function deleteTodo(newName) {
     return (dispatch) => {
-        axios.post('http://localhost:5000/todo', {name: newName})
+        axios.delete('http://localhost:5000/todo', {id: todoId})
             .then(result => {
                 console.log(result.data)
-                dispatch(getTodos())
+                dispatch({
+                    type: 'DEL_TODO',
+                    payload: result.data
+
+
+                })
             })
             .catch()
     }
