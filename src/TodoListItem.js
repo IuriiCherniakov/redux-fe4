@@ -16,27 +16,24 @@ function TodoListItem(props) {
 
 
     return (
-        <li>
-            {el.name}
-
-            <input type='checkbox' checked={el.done} onClick={() => {
-                props.markTodo(el._id, el.done)
-            }}/>
+        <ul>
+            <span className='w-25 p-3'>{el.name}</span>
 
 
-            <button onClick={() => props.delTodo(el._id)}>delete</button>
-
-            <input value={editedTodo} onChange={(e) => setEditedTodo(e.target.value)}/>
+            <input value={editedTodo} onChange={(e) => setEditedTodo(e.target.value) }/>
             <button onClick={() => {
                 updateTodo(el._id, editedTodo);
                 setEditedTodo('')
             }
             }>update
             </button>
-
+            <button onClick={() => props.delTodo(el._id)}>delete</button>
             <button onClick={moveUpButton} disabled={i===0} >UP</button>
             <button onClick={() => moveDown(i, i + 1)} disabled={i===(todos.length-1)}>DOWN</button>
-        </li>
+            <input type='checkbox' checked={el.done} onClick={() => {
+            props.markTodo(el._id, el.done)
+        }}/>
+        </ul>
     );
 }
 

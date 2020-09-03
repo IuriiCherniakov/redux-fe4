@@ -18,12 +18,6 @@ const initialState = {
         //     done: false,
         //     id: Math.random()
         //
-        // },
-        // {
-        //     title: 'Fifth todo',
-        //     done: false,
-        //     id: Math.random()
-        //
         // }
     ],
 
