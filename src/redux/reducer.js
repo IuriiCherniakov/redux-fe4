@@ -13,12 +13,8 @@ const initialState = {
         //     title: 'Third todo',
         //     done: false,
         //     id: Math.random()
-        // }, {
-        //     title: 'Fourth todo',
-        //     done: false,
-        //     id: Math.random()
-        //
         // }
+
     ],
 
 

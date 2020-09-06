@@ -20,7 +20,6 @@ function Dashboard(props) {
         setNewTodo('')
     }
 
-
     // const moveUp = (currentElement, previousElement) => {
     //     if(previousElement < 0 || previousElement >= list.length) return
     //     const newList = list.map((el, i)=> {
